@@ -2,7 +2,6 @@ import sys
 import os 
 from subprocess import call
 from CaesarCipher import CypherFile
-from SmartCipher import smart_scan
 
 operation_type = ''
 
@@ -27,6 +26,7 @@ def take():
         sys.exit()
     else:
         return select
+
 
 def create_object():
     new_scrn()
@@ -104,15 +104,15 @@ def create_cipher():
     created_cc.shift = int(entered_shift)
     created_cc.shift_alpha()
     summary(created_cc)
-    
-    
+
+        
  # BREAK GIVEN CIPHER
 def break_cipher():
     created_cc = create_object()
     for i in range(0,27):
         created_cc.shift = i
         created_cc.shift_alpha()
-        scan = smart_scan(created_cc)
+        scan = created_cc.smart_scan(created_cc)
         if len(scan) > 5:
             new_scrn()
             print(' > POSSIBLE MATCH FOUND!\n')
@@ -128,24 +128,10 @@ def break_cipher():
     shift = int(take())
     created_cc.shift = -shift
     created_cc.shift_alpha()
-    summary(created_cc)
-
-
-        
-    
+    summary(created_cc)  
 
 
 
 if __name__ == '__main__':
     main_ui()     
-    
-    
-    
-        
-        
-        
-        
-
-
-
     
